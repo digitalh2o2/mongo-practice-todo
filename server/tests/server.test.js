@@ -284,6 +284,16 @@ describe('POST /todos', () => {
             }).catch((e) => done(e));
         });
     });
+  });
+
+  describe('DELETE /users/me/token', () => {
+    it('should remove auth token on logout', (done) => {
+      request(app)
+        .delete('/users/me/token')
+        .set('x-auth', users[0].tokens[0].token)
+        .expect(200)
+        .end(done);
+    })
   })
 
 });
